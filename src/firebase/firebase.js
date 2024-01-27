@@ -30,7 +30,7 @@ provider.setCustomParameters({
 });
 
 const auth = getAuth(app);
-setPersistence(auth, browserSessionPersistence)
+setPersistence(auth, browserLocalPersistence)
   .then(() => {
     // Existing and future Auth states are now persisted in the current
     // session only. Closing the window would clear any existing state even
