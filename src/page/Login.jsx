@@ -162,7 +162,7 @@ const Login = () => {
               />
             </div>
 
-            <button class="my-6 bg-blue-600 hover:bg-blue-700 text-white font-medium text-lg px-4 py-2 rounded-md">
+            <button class="my-6 bg-blue-600 hover:bg-blue-700 text-white font-medium text-lg px-4 py-2 rounded-md" onClick={onLogin}>
               Login
             </button>
           </form>
