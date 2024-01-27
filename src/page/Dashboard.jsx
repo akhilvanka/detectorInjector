@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UploadFile from "../components/UploadFile";
-import { auth } from "../firebase/firebase";
-import { signOut } from "firebase/auth";
+import auth from "../firebase/firebase";
+import { signOut, getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 const Box = ({ id, title, selected, onClick }) => {
@@ -18,10 +18,21 @@ const Box = ({ id, title, selected, onClick }) => {
 };
 
 export default function Dashboard() {
+  const [user, setUser] = useState(null);
   const [selectedBox, setSelectedBox] = useState(1);
   const handleClick = (boxNumber) => {
     setSelectedBox(boxNumber);
   };
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    // Cleanup function to unsubscribe when component unmounts
+    return () => unsubscribe();
+  }, []);
 
   const navigate = useNavigate();
 
