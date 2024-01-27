@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import {useDropzone} from 'react-dropzone'
 import TextareaAutosize from 'react-textarea-autosize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faFile, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import {  faFileWord, faSpinner, faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons'
 import auth from "../firebase/firebase"
 
 const UploadFile = () => {
@@ -72,8 +72,7 @@ const handleFileChange = (e) => {
       <div className={"w-2/4 grid"} id="fileUploadWrapper" {...getRootProps()}>
         <input id="file" type="file" onChange={handleFileChange}  {...getInputProps()} />
         <span className={"w-2/4 m-auto text-center"}>
-        <FontAwesomeIcon icon={faFile} className={"h-20 place-self-center  "} />
-        
+        <FontAwesomeIcon icon={faFileWord} className={"h-20 place-self-center  "} />
           {
           isDragActive ?
             <p>Drop the files here ...</p> :
