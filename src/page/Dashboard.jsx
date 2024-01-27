@@ -5,6 +5,7 @@ import { signOut, getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import GetExisting from "../components/GetExisting";
 import DocumentFetcher from "../components/GetExisting";
+import Profile from "../components/Profile";
 
 const Box = ({ id, title, selected, onClick }) => {
   return (
@@ -95,7 +96,7 @@ export default function Dashboard() {
           {
             1: <UploadFile />,
             2: <DocumentFetcher />,
-            3: <div>About</div>,
+            3: <Profile auth={auth} />,
           }[selectedBox]
         }
       </div>
