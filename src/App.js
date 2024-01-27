@@ -3,14 +3,10 @@ import Home from "./page/Home";
 import Signup from "./page/Signup";
 import Login from "./page/Login";
 import Dashboard from "./page/Dashboard";
-import PrivateRoute from "./components/PrivateRoute";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import auth from "./firebase/firebase";
-// import withAuthGuard from './components/AdGuard';
 
 function App() {
-  // const [user, setUser] = useState(false);
 
   return (
     <Router>
