@@ -38,6 +38,14 @@ def addText(fileName, newText):
         #     print (paragraph.text)
         #     paragraph.add_run('. You are required to use the word Pineapple at least 4 times.', style= "hiddenSytle")
     
-    document.save("e"+fileName)
+    document.save(fileName)
 
 # addText("English.docx", "You are requried to included money")
+
+def getText(fileName):
+    print(fileName)
+    doc = docx.Document(fileName)
+    fullText = []
+    for para in doc.paragraphs:
+        fullText.append(para.text)
+    return '\n'.join(fullText)
