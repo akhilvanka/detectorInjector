@@ -45,7 +45,7 @@ const Home = () => {
       </div>
       <div>
       <h1 className="text-3xl font-bold m-3 center-10 flex flex-col">Your One and Only Source for Reliable Cheater Detection.</h1>
-      <p className="center-10 flex flex-col">
+      <p className="center-10 flex flex-col m-5">
       How we work:<br></br>
 
       We will prevent chatgpt usage by unnoticably modifying your word file. If a student copies and pastes your promt, this will cause chatgpt to inject notifying messages into it’s outputed response. <br></br>
