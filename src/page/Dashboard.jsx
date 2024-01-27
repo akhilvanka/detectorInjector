@@ -65,7 +65,7 @@ export default function Dashboard() {
         <div className="absolute bottom-0 right-10 flex flex-col items-end">
           <p className="mb-4">
             {auth.currentUser != null
-              ? `Welcome Home ${auth.currentUser.email}`
+              ? `${auth.currentUser.email}`
               : "Please Sign In"}
           </p>
           <Box

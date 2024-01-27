@@ -15,7 +15,7 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        navigate("/home");
+        navigate("/dash");
         console.log(user);
       })
       .catch((error) => {
@@ -81,8 +81,8 @@ const Login = () => {
     //         </section>
     //     </main>
     // </>
-    <div className="flex flex-1 min-h-screen">
-      <div className="w-1/2">
+     <div className="flex flex-1 min-h-screen">
+      <div className="w-full bg-yellow-200">
         {/* Time to add stuff for login form */}
         <div className="h-screen flex flex-col items-center justify-center">
           <h1 className="text-4xl font-bold">Welcome Back!</h1>
@@ -115,9 +115,9 @@ const Login = () => {
               <button onClick={onLogin}>Login</button>
             </div>
           </form>
+          <SignIn />
         </div>
       </div>
-      <div className="w-1/2 bg-black"></div>
     </div>
   );
 };
