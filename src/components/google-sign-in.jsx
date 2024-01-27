@@ -21,7 +21,7 @@ const SignIn = () => {
   };
   return (
     <div>
-      <button onClick={logGoogleUser}>Sign In With Google</button>
+      <button className="my-6 bg-black hover:bg-neutral-400 text-white font-medium text-lg px-4 py-2 rounded-md" onClick={logGoogleUser}>Sign In With Google</button>
     </div>
   );
 };
