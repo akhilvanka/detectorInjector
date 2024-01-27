@@ -3,6 +3,8 @@ import UploadFile from "../components/UploadFile";
 import auth from "../firebase/firebase";
 import { signOut, getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import GetExisting from "../components/GetExisting";
+import DocumentFetcher from "../components/GetExisting";
 
 const Box = ({ id, title, selected, onClick }) => {
   return (
@@ -92,7 +94,7 @@ export default function Dashboard() {
         {
           {
             1: <UploadFile />,
-            2: <div>My Injected PDFs</div>,
+            2: <DocumentFetcher />,
             3: <div>About</div>,
           }[selectedBox]
         }
