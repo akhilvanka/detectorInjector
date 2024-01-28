@@ -62,8 +62,9 @@ const Home = () => {
         <div className="absolute bottom-0 right-10 flex flex-col items-end">
         </div>
       </div>
-      <div>
-      <h1 className="text-3xl font-bold m-3 center-10 flex flex-col">Your One and Only Source for Reliable Cheater Detection.</h1>
+      <div className="max-w-xl mx-auto bg-lime-100 min-h-100 ">
+      
+      <h1 className="text-3xl font-bold m-3 center-10 flex flex-col ">The best Source for Reliable AI usage detection.</h1>
       <p className="center-10 flex flex-col m-5">
       How we work:<br></br>
 
