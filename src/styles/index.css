@@ -23,3 +23,17 @@
 .radio input{
     @apply mr-1
 }
+
+#spinner {
+    /* Transform: translate(-50%, -50%); */
+    position: fixed;
+    top:calc(50% - 30px);
+    left:calc(50% - 30px);
+    height: 60px;
+
+}
+
+.logo{
+    width: 130px;
+    margin-top: -10px;
+}

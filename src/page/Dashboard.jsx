@@ -22,6 +22,7 @@ const Box = ({ id, title, selected, onClick }) => {
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
+  const [image, setImage] = useState('/logo.png');
   const [selectedBox, setSelectedBox] = useState(1);
   const handleClick = (boxNumber) => {
     setSelectedBox(boxNumber);
@@ -33,8 +34,16 @@ export default function Dashboard() {
       setUser(user);
     });
 
+    //Implementing the setInterval method
+    const interval = setTimeout(() => {
+      setImage("/logoAnimation.gif")
+    }, 5000);
+
     // Cleanup function to unsubscribe when component unmounts
-    return () => unsubscribe();
+    return () => {
+      unsubscribe()
+      clearInterval(interval)
+    };
   }, []);
 
   const navigate = useNavigate();
@@ -52,10 +61,11 @@ export default function Dashboard() {
       });
   };
 
+
   return (
     <div className="min-h-screen bg-[#F5DFBB] flex flex-1 flex-col">
       <div className="bg-[#FFD592] rounded-b-3xl w-full h-24 border border-black shadow-xl relative">
-        <h1 className="text-3xl font-bold m-3">Detector Injector</h1>
+        <h1 className="text-3xl font-bold m-3"><img className="logo" src={process.env.PUBLIC_URL +image} /></h1>
         <div className="absolute bottom-0 left-10 flex">
           <Box
             id={1}
