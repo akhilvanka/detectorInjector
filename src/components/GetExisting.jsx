@@ -32,7 +32,7 @@ const DocumentList = ({ documents }) => {
           {documents.map((doc, index) => (
             <div key={index} className="w-[120px] mx-6	p-2 relative" >
                 <button onClick={() => showGpt(doc.GPTresponse)} className="w-6 h-6 absolute right-0	hover:bg-blue-300 rounded active:bg-blue-800">
-                <img className=" " src={process.env.PUBLIC_URL +"openAi.png"} />  
+                <img className=" " src={process.env.PUBLIC_URL +"openAI.png"} />  
               </button>
               <span className="w-5/6 block">
                 <a className="text-wrap block break-words	hover:bg-green-200	rounded" href={doc.docUrl} download={doc.filename} target="_blank">
