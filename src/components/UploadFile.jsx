@@ -67,7 +67,8 @@ const handleFileChange = (e) => {
 
   return (
     <>
-    <div id="UploadFileForm">
+    <div className="max-w-[1100px] mx-auto">
+    <div id="UploadFileForm" >
 
       <div className={"w-2/4 grid"} id="fileUploadWrapper" {...getRootProps()}>
         <input id="file" type="file" onChange={handleFileChange}  {...getInputProps()} />
@@ -127,12 +128,14 @@ const handleFileChange = (e) => {
         </ul>
       </section>
     )} */}
+    
     </div>
     {/* {file && toInject && }  */}
     <div className={"rounded-md border-2 m-2 border-black	bg-red-400	w-fit	p-1 hover:bg-red-200"} >
       {!file || !toInject ? "Choose a file and prompt injection to continue": <button onClick={handleUpload}>Upload {file.name}</button>}
     </div>
     <Result status={status} />
+    </div>
     </>
   )
 
