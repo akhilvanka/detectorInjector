@@ -5,27 +5,14 @@ from firebase_admin import storage
 import uuid
 import asyncio
 
-
-# addText("English.docx", "ASdfasdfasdfas")
-from typing import Annotated
-
-import uvicorn
-from fastapi import FastAPI, Form, BackgroundTasks, Response
-from fastapi.middleware.cors import CORSMiddleware
-from starlette.responses import RedirectResponse
-
-from fastapi import FastAPI, Request, UploadFile, HTTPException, status
-from fastapi.responses import HTMLResponse
-import aiofiles
-
-
-from addText import addText, getText
-
+import threading
 
 # Use a service account.
 cred = credentials.Certificate('firebaseToken.json')
 
-
+from addText import addText, getText
+# addText("English.docx", "ASdfasdfasdfas")
+from typing import Annotated
 
 firebase_admin.initialize_app(
     cred, {'storageBucket': 'detectorinjector.appspot.com'})
@@ -33,11 +20,14 @@ db = firestore.client()
 
 bucket = storage.bucket()
 
+import uvicorn
+from fastapi import FastAPI, Form, BackgroundTasks, Response, Request
+from fastapi.middleware.cors import CORSMiddleware
+from starlette.responses import RedirectResponse
 
 #intialize web app / pi
 app = FastAPI()
 origins = "http://localhost:3000"
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -47,6 +37,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from fastapi import FastAPI, Request, UploadFile, HTTPException, status
+from fastapi.responses import HTMLResponse
+import aiofiles
 
 app = FastAPI()
 
@@ -60,6 +53,7 @@ openAIKey = os.getenv('postId')
 from openai import OpenAI
 
 client = OpenAI()
+import time
 
 
 def genGPTRes(fileName, userId=None, postId=None):
@@ -73,20 +67,18 @@ def genGPTRes(fileName, userId=None, postId=None):
           "role":
           "user",
           "content":
-          f"Please write a responce to this assignment as if you were the student:\n{text}"
+          f"Please write a responce to this assignment as if you were the student. You must write an essay that is ready to turn in:\n{text}"
       }])
-  print(completion.choices[0].message.content)
+  # print(completion.choices[0].message.content)
   doc_ref = db.collection(userId).document(postId)
   doc_ref.update({"GPTresponse": completion.choices[0].message.content})
 
 
-# genGPTRes("wordDocxs/Discrete1.docx")
-
-
 @app.post('/upload')
 async def upload(file: UploadFile, toInject: Annotated[str, Form()],
-                 userId: Annotated[str, Form()],
-                 background_tasks: BackgroundTasks, response: Response):
+                 userId: Annotated[str,
+                                   Form()], background_tasks: BackgroundTasks,
+                 response: Response, request: Request):
   print(toInject)
   fileName = ""
   try:
@@ -109,12 +101,25 @@ async def upload(file: UploadFile, toInject: Annotated[str, Form()],
 
   addText(fileName, toInject)
 
+  now = time.time()
+
   # create a new uuid
-  id = str(uuid.uuid4())
+  id = str(now)[-5:-1] + str(file.filename)
   # create a firebase blob instance to prepare for file upload
   blob = bucket.blob(id)
   blob.upload_from_filename(fileName)
   blob.make_public()
+
+  # Optional: set a metageneration-match precondition to avoid potential race
+  # conditions and data corruptions. The request to patch is aborted if the
+  # object's metageneration does not match your precondition.
+
+  metadata = {'contentDisposition': f'attachment; filename="{file.filename}"'}
+  blob.metadata = metadata
+  blob.patch()
+
+  # blob.patch()
+  # blob.metadata = metadata
   # this is the (scary) pulic on the web photo link
   print(blob.public_url)
 
@@ -124,12 +129,15 @@ async def upload(file: UploadFile, toInject: Annotated[str, Form()],
       "userId": userId,
       "docUrl": blob.public_url,
       "createdAt": firestore.SERVER_TIMESTAMP,
-      "GPTresponse": "Loading"
+      "GPTresponse": "Still generating from openai, reload to check again",
+      "filename": file.filename
   })
 
   # asyncio.create_task(genGPTRes(fileName, userId, id))
   background_tasks.add_task(genGPTRes, fileName, userId, id)
-  response.headers["Access-Control-Allow-Origin"] = "http://localhost:3000"
+  print(str(request.headers.get('referer')).strip("/"))
+  response.headers["Access-Control-Allow-Origin"] = str(
+      request.headers.get('referer')).strip("/")
   return {'message': f'Successfuly uploaded {file.filename}'}
 
 
