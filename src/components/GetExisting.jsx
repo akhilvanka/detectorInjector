@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import auth from "../firebase/firebase";
 import { useEffect, useState } from "react";
@@ -40,7 +40,7 @@ const DocumentFetcher = () => {
       const user = auth.currentUser;
       if (user) {
         try {
-          const querySnapshot = await getDocs(collection(db, user.uid));
+          const querySnapshot = await getDocs(query(collection(db, user.uid), orderBy("createdAt", "desc")));
           const docsData = querySnapshot.docs.map((doc) => doc.data());
           setDocuments(docsData);
         } catch (error) {
