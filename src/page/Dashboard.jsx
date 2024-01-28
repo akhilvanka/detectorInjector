@@ -11,7 +11,7 @@ const Box = ({ id, title, selected, onClick }) => {
   return (
     <div
       onClick={() => onClick(id)}
-      className={`border border-black border-b-0 w-48 h-8 flex justify-center items-center cursor-pointer rounded-sm hover:bg-[#f89292] ${
+      className={` w-fit px-1 border border-black border-b-0 md:w-48 h-8 flex justify-center items-center cursor-pointer rounded-sm hover:bg-[#f89292] ${
         selected ? "bg-[#f89292]" : ""
       }`}
     >
@@ -63,7 +63,7 @@ export default function Dashboard() {
 
 
   return (
-    <div className="min-h-screen bg-[#F5DFBB] flex flex-1 flex-col">
+    <div className=" min-h-screen bg-[#F5DFBB] flex flex-1 flex-col">
       <div className="bg-[#FFD592] rounded-b-3xl w-full h-24 border border-black shadow-xl relative">
         <h1 className="text-3xl font-bold m-3"><img className="logo" src={process.env.PUBLIC_URL +image} /></h1>
         <div className="absolute bottom-0 left-10 flex">

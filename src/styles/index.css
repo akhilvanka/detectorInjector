@@ -37,3 +37,8 @@
     width: 130px;
     margin-top: -10px;
 }
+
+#gptDisplay {
+left: 50%;
+transform: translate(-50%, 0%);
+}
