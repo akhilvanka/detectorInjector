@@ -74,7 +74,7 @@ const handleFileChange = (e) => {
     <div className="max-w-[1100px] mx-auto">
     <div id="UploadFileForm" >
 
-      <div className={"w-2/4 grid"} id="fileUploadWrapper" {...getRootProps()}>
+      <div className={"w-2/4 grid " + (isDragActive? "bg-amber-200	":"")} id="fileUploadWrapper" {...getRootProps()}>
         <input id="file" type="file" onChange={handleFileChange}  {...getInputProps()} />
         <span className={"w-2/4 m-auto text-center"}>
         <FontAwesomeIcon icon={faFileWord} className={"h-20 place-self-center  "} />
