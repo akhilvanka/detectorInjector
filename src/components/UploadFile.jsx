@@ -7,7 +7,7 @@ import auth from "../firebase/firebase"
 
 const UploadFile = () => {
   const [file, setFile] = useState(null);
-  const [toInject, setToInject] = useState(null);
+  const [toInject, setToInject] = useState('');
   const [customText, setCustomText] = useState('');
   const [status, setStatus] = useState("initial");
 
@@ -23,7 +23,11 @@ const handleFileChange = (e) => {
   const handleUpload = async () => {
     // We will fill this out later
     if ( typeof file === 'undefined' ) return;
-    if ( toInject === "custom" ? customText : toInject === 'undefined' ) return;
+    console.log(toInject === "custom")
+    if ( (toInject === "custom" ? customText : toInject) === '' ) return;
+
+    // console.log("made it")
+    // return
     setStatus("uploading");
 
     const formData = new FormData();
