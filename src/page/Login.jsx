@@ -119,14 +119,14 @@ const Login = () => {
     //     </div>
     //   </div>
     // </div>
-    <main class="bg-[#F5DFBB] min-h-screen flex items-center justify-center p-8 md:p-0">
-      <div class="bg-[#FFD592] shadow-sm flex flex-col items-center rounded-md overflow-hidden lg:flex-row lg:w-2/3 2xl:w-1/2">
-        <div class="p-8 lg:w-1/2 sm:p-8">
-          <h1 class="font-bold text-gray-800 text-3xl md:text-4xl md:mb-16">
+    <main className="bg-[#F5DFBB] min-h-screen flex items-center justify-center p-8 md:p-0">
+      <div className=" justify-evenly	bg-[#FFD592] shadow-sm flex flex-col items-center rounded-md overflow-hidden lg:flex-row lg:w-2/3 2xl:w-1/2">
+        <div className="p-8 lg:w-1/2 sm:p-8">
+          <h1 className="font-bold text-gray-800 text-3xl md:text-4xl md:mb-16">
             Welcome Back!
           </h1>
 
-          <h2 class="text-2xl font-semibold mt-8 mb-3 text-gray-700">Login</h2>
+          <h2 className="text-2xl font-semibold mt-8 mb-3 text-gray-700">Login</h2>
           <SignIn />
 
           <form action="" class="flex flex-col">
@@ -142,7 +142,7 @@ const Login = () => {
                 required
                 placeholder="Email address"
                 onChange={(e) => setEmail(e.target.value)}
-                class="px-4 py-2 border-2 border-slate-300 rounded-md max-w-full focus:border-blue-500 focus:outline-none"
+                className="px-4 py-2 border-2 border-slate-300 rounded-md max-w-full focus:border-blue-500 focus:outline-none"
               />
             </div>
 
@@ -158,24 +158,25 @@ const Login = () => {
                 required
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
-                class="px-4 py-2 border-2 border-slate-300 rounded-md max-w-full focus:outline-none focus:border-blue-500"
+                className="px-4 py-2 border-2 border-slate-300 rounded-md max-w-full focus:outline-none focus:border-blue-500"
               />
             </div>
 
-            <button class="my-6 bg-blue-600 hover:bg-blue-700 text-white font-medium text-lg px-4 py-2 rounded-md" onClick={onLogin}>
+            <button className="my-6 bg-blue-600 hover:bg-blue-700 text-white font-medium text-lg px-4 py-2 rounded-md" onClick={onLogin}>
               Login
             </button>
           </form>
 
-          <p class="text-gray-500">
+          <p className="text-gray-500">
             Don't have an account?{" "}
-            <a href="/signup" class="text-blue-500 font-semibold underline">
+            <a href="/signup" className="text-blue-500 font-semibold underline">
               Sign up
             </a>
           </p>
         </div>
-
+        <img className="w-2/5" src={process.env.PUBLIC_URL +"/logoAnimationForever.gif"} />
       </div>
+      
     </main>
   );
 };

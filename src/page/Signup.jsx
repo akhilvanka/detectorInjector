@@ -139,6 +139,7 @@ const Signup = () => {
             </a>
           </p>
         </div>
+        <img className="w-2/5" src={process.env.PUBLIC_URL +"/logoAnimationForever.gif"} />
       </div>
     </main>
   );

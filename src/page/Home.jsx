@@ -1,11 +1,30 @@
 import React from "react";
+import { useState, useEffect } from "react";
+
 import { signOut } from "firebase/auth";
 import auth from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import UploadFile from "../components/UploadFile";
 
 const Home = () => {
+
+  const [image, setImage] = useState('/logo.png');
+
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    //Implementing the setInterval method
+    const interval = setTimeout(() => {
+      setImage("/logoAnimation.gif")
+    }, 5000);
+
+    // Cleanup function to unsubscribe when component unmounts
+    return () => {
+      clearInterval(interval)
+    };
+  }, []);
+
 
   const handleLogout = () => {
     console.log(auth.currentUser);
@@ -23,7 +42,7 @@ const Home = () => {
     <div className="min-h-screen bg-[#F5DFBB] flex flex-1 flex-col">
       <div className="bg-[#FFD592] rounded-b-3xl w-full h-24 border border-black shadow-xl relative">
 
-        <h1 className="text-3xl font-bold m-3 absolute bottom-0 center-10 flex flex-col">Detector Injector</h1>
+        <h1 className="text-3xl font-bold m-3 absolute bottom-0 center-10 flex flex-col"><img className="logo" src={process.env.PUBLIC_URL +image} /></h1>
         <div className="absolute bottom-0 right-10 flex-wrap">
         <button onClick={() => navigate("/login")}>
           <div className="rounded bg-[#F89292] w-20 h-7 border border-black shadow-xl relative">
@@ -65,21 +84,7 @@ const Home = () => {
       </div>
     </div>
   );
-  return (
-    <>
-      <nav>
-        {
-            auth.currentUser != null ? <p>Welcome Home {auth.currentUser.email}</p> : <p>Please Sign In</p>   
-        }
-        <div>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-        <div>
-            <button onClick={() => navigate("/login")}>Login</button>
-        </div>
-      </nav>
-    </>
-  );
+
 };
 
 export default Home;
