@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+check out [https://devpost.com/software/detectorinjector](https://devpost.com/software/detectorinjector) for more info
 
 ## Available Scripts
 
