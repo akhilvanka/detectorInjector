@@ -82,7 +82,7 @@ const Home = () => {
       </p>
       In Built ChatGPT testing 
       </p>
-      <a href="https://devpost.com/software/detectorinjector"> Check us out on DevPost</a>
+      <a className="w-full text-center font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://devpost.com/software/detectorinjector"> Check us out on DevPost</a>
       </div>
     </div>
   );
