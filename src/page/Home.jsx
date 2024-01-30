@@ -82,6 +82,7 @@ const Home = () => {
       </p>
       In Built ChatGPT testing 
       </p>
+      <a href="https://devpost.com/software/detectorinjector"> Check us out on DevPost</a>
       </div>
     </div>
   );
