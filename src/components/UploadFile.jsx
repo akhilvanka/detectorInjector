@@ -37,7 +37,7 @@ const handleFileChange = (e) => {
     formData.append('toInject', toInject === "custom" ? customText : toInject);
     formData.append('userId', auth.currentUser.uid);
     try {
-      const results = await fetch('https://detector-injector-backend-theohal.replit.app/upload', {
+      const results = await fetch('https://backenddetectorinjector.theoh.dev/upload', {
         // mode: 'no-cors',
         method: 'POST',
         body: formData
